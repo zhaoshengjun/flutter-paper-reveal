@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_page_reveal/page_reveal.dart';
 import 'pages.dart';
 
 void main() => runApp(new MyApp());
@@ -32,9 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
         body: new Stack(
       children: <Widget>[
         new Page(
-          viewModel: pages[1],
-          percentVisible: 0.2,
-        )
+          viewModel: pages[0],
+          percentVisible: 1.0,
+        ),
+        new PageReveal(
+            revealPercent: 1.0,
+            child: new Page(
+              viewModel: pages[1],
+              percentVisible: 1.0,
+            ))
       ],
     ));
   }
