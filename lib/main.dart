@@ -53,7 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: new Container(
                     width: 50.0,
                     height: 50.0,
-                    color: Colors.red,
+                    decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
                 new Padding(
@@ -61,7 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: new Container(
                     width: 50.0,
                     height: 50.0,
-                    color: Colors.red,
+                    decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
                 new Padding(
@@ -69,7 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: new Container(
                     width: 50.0,
                     height: 50.0,
-                    color: Colors.red,
+                    decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
                   ),
                 )
               ],
