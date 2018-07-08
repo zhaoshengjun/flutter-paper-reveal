@@ -33,3 +33,14 @@ class Page extends StatelessWidget {
     );
   }
 }
+
+class PageViewModel {
+  final Color color;
+  final String heroAssetPath;
+  final String title;
+  final String body;
+  final String iconAssetIcon;
+
+  PageViewModel(this.color, this.heroAssetPath, this.title, this.body,
+      this.iconAssetIcon);
+}
