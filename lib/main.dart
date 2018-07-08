@@ -40,7 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   'assets/hotels.png',
                   width: 200.0,
                   height: 200.0,
-                )
+                ),
+                new Text('Hotels'),
+                new Text('This is a body text')
               ]),
         )
       ],
