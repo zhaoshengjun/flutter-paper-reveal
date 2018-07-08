@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 20.0,
                     decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.red,
+                      border: new Border.all(color: Colors.red, width: 3.0),
                     ),
                   ),
                 ),
@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 20.0,
                     decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.red,
+                      border: new Border.all(color: Colors.red, width: 3.0),
                     ),
                   ),
                 )
