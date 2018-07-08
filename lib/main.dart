@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         body: new Stack(
-      children: <Widget>[
+      children: [
         new Page(
           viewModel: pages[0],
           percentVisible: 1.0,
@@ -41,7 +41,25 @@ class _MyHomePageState extends State<MyHomePage> {
             child: new Page(
               viewModel: pages[1],
               percentVisible: 1.0,
-            ))
+            )),
+        new Column(
+          children: [
+            new Expanded(child: new Container()),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                new Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: new Container(
+                    width: 50.0,
+                    height: 50.0,
+                    color: Colors.red,
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
       ],
     ));
   }
