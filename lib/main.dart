@@ -68,6 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: BoxShape.circle,
                       color: Colors.red,
                     ),
+                    child: new Image.asset(
+                      'assets/wallet.png',
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
                 new Padding(
