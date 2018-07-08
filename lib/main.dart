@@ -55,6 +55,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 50.0,
                     color: Colors.red,
                   ),
+                ),
+                new Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: new Container(
+                    width: 50.0,
+                    height: 50.0,
+                    color: Colors.red,
+                  ),
+                ),
+                new Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: new Container(
+                    width: 50.0,
+                    height: 50.0,
+                    color: Colors.red,
+                  ),
                 )
               ],
             )
