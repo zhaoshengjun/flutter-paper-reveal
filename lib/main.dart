@@ -41,8 +41,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 200.0,
                   height: 200.0,
                 ),
-                new Text('Hotels'),
-                new Text('This is a body text')
+                new Text(
+                  'Hotels',
+                  style: new TextStyle(color: Colors.white, fontSize: 34.0),
+                ),
+                new Text(
+                  'This is a body text',
+                  textAlign: TextAlign.center,
+                  style: new TextStyle(color: Colors.white, fontSize: 18.0),
+                )
               ]),
         )
       ],
