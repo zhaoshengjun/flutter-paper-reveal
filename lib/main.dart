@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
       children: <Widget>[
         new Page(
           viewModel: pages[1],
+          percentVisible: 0.5,
         )
       ],
     ));
