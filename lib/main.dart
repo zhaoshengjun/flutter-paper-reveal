@@ -30,7 +30,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         body: new Stack(
-      children: <Widget>[new Page()],
+      children: <Widget>[
+        new Page(
+          viewModel: new PageViewModel(Colors.blue, 'assets/hotels.png',
+              'Hotels', 'This is a body.', null),
+        )
+      ],
     ));
   }
 }
