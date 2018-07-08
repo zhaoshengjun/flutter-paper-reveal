@@ -31,7 +31,17 @@ class _MyHomePageState extends State<MyHomePage> {
         body: new Stack(
       children: <Widget>[
         new Container(
+          width: double.INFINITY,
           color: Colors.blue,
+          child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                new Image.asset(
+                  'assets/hotels.png',
+                  width: 200.0,
+                  height: 200.0,
+                )
+              ]),
         )
       ],
     ));
