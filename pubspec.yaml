@@ -28,4 +28,8 @@ flutter:
   assets:
     - assets/banks.png
     - assets/hotels.png
+    - assets/stores.png
+    - assets/key.png
+    - assets/shopping_cart.png
+    - assets/wallet.png
   

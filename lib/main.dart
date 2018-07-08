@@ -32,8 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: new Stack(
       children: <Widget>[
         new Page(
-          viewModel: new PageViewModel(Colors.blue, 'assets/hotels.png',
-              'Hotels', 'This is a body.', null),
+          viewModel: pages[1],
         )
       ],
     ));
