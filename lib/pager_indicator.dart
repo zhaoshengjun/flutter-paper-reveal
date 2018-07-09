@@ -55,6 +55,18 @@ class PagerIndicator extends StatelessWidget {
   }
 }
 
+class PagerIndicatorViewModel {
+  final List<PageViewModel> pages;
+  final int activeIndex;
+  final double slidePercent;
+
+  PagerIndicatorViewModel({
+    this.pages,
+    this.activeIndex,
+    this.slidePercent
+  })
+}
+
 class PagerBubbleViewModel {
   final String iconAssetPath;
   final Color color;
