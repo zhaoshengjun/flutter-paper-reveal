@@ -4,9 +4,7 @@ import 'pages.dart';
 class PagerIndicator extends StatelessWidget {
   final PagerIndicatorViewModel viewModel;
 
-  PagerIndicator({
-    this.viewModel
-  });
+  PagerIndicator({this.viewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -28,21 +26,7 @@ class PagerIndicator extends StatelessWidget {
                 ),
               ),
             ),
-            new Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: new Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: const Color(0x88FFFFFF),
-                ),
-                child: new Image.asset(
-                  'assets/wallet.png',
-                  color: Colors.blue,
-                ),
-              ),
-            ),
+            new PageBubble(),
             new Padding(
               padding: const EdgeInsets.all(10.0),
               child: new Container(
@@ -62,10 +46,28 @@ class PagerIndicator extends StatelessWidget {
   }
 }
 
-enum SlideDirection {
-  leftToRight,
-  rightToLeft
+class PageBubble extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: new Container(
+        width: 50.0,
+        height: 50.0,
+        decoration: new BoxDecoration(
+          shape: BoxShape.circle,
+          color: const Color(0x88FFFFFF),
+        ),
+        child: new Image.asset(
+          'assets/wallet.png',
+          color: Colors.blue,
+        ),
+      ),
+    );
+  }
 }
+
+enum SlideDirection { leftToRight, rightToLeft }
 
 class PagerIndicatorViewModel {
   final List<PageViewModel> pages;
@@ -73,14 +75,9 @@ class PagerIndicatorViewModel {
   final SlideDirection slideDirection;
   final double slidePercent;
 
-  PagerIndicatorViewModel({
-    this.pages,
-    this.activeIndex,
-    this.slideDirection,
-    this.slidePercent
-  });
+  PagerIndicatorViewModel(
+      {this.pages, this.activeIndex, this.slideDirection, this.slidePercent});
 }
-
 
 class PagerBubbleViewModel {
   final String iconAssetPath;
@@ -88,10 +85,6 @@ class PagerBubbleViewModel {
   final bool isHollow;
   final double activePercent;
 
-  PagerBubbleViewModel({
-    this.iconAssetPath,
-    this.color,
-    this.isHollow,
-    this.activePercent
-  })
+  PagerBubbleViewModel(
+      {this.iconAssetPath, this.color, this.isHollow, this.activePercent});
 }
