@@ -18,7 +18,7 @@ class PagerIndicator extends StatelessWidget {
           viewModel: new PageBubbleViewModel(
               iconAssetPath: page.iconAssetIcon,
               color: page.color,
-              isHollow: false,
+              isHollow: i > viewModel.activeIndex,
               activePercent: i == viewModel.activeIndex ? 1.0 : 0.0)));
     }
     return new Column(
