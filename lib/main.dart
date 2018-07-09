@@ -55,7 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 20.0,
                     decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      border: new Border.all(color: Colors.red, width: 3.0),
+                      border: new Border.all(
+                          color: const Color(0x88FFFFFF), width: 3.0),
                     ),
                   ),
                 ),
@@ -66,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 50.0,
                     decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.red,
+                      color: const Color(0x88FFFFFF),
                     ),
                     child: new Image.asset(
                       'assets/wallet.png',
@@ -81,7 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 20.0,
                     decoration: new BoxDecoration(
                       shape: BoxShape.circle,
-                      border: new Border.all(color: Colors.red, width: 3.0),
+                      border: new Border.all(
+                          color: const Color(0x88FFFFFF), width: 3.0),
                     ),
                   ),
                 )
