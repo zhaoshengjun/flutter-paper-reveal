@@ -16,17 +16,12 @@ class PagerIndicator extends StatelessWidget {
         new Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            new Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: new Container(
-                width: 20.0,
-                height: 20.0,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: new Border.all(
-                      color: const Color(0x88FFFFFF), width: 3.0),
-                ),
-              ),
+            new PageBubble(
+              viewModel: new PageBubbleViewModel(
+                  iconAssetPath: 'assets/shopping_cart.png',
+                  color: Colors.green,
+                  isHollow: true,
+                  activePercent: 0.0),
             ),
             new PageBubble(
               viewModel: new PageBubbleViewModel(
@@ -65,9 +60,12 @@ class PageBubble extends StatelessWidget {
           shape: BoxShape.circle,
           color: const Color(0x88FFFFFF),
         ),
-        child: new Image.asset(
-          viewModel.iconAssetPath,
-          color: viewModel.color,
+        child: new Opacity(
+          opacity: viewModel.activePercent,
+          child: new Image.asset(
+            viewModel.iconAssetPath,
+            color: viewModel.color,
+          ),
         ),
       ),
     );
