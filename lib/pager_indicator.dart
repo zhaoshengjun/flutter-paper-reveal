@@ -10,35 +10,21 @@ class PagerIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<PageBubble> bubbles = [];
+    for (var i = 0; i < viewModel.pages.length; ++i) {
+      final page = viewModel.pages[i];
+
+      bubbles.add(new PageBubble(
+          viewModel: new PageBubbleViewModel(
+              iconAssetPath: page.iconAssetIcon,
+              color: page.color,
+              isHollow: false,
+              activePercent: i == viewModel.activeIndex ? 1.0 : 0.0)));
+    }
     return new Column(
       children: [
         new Expanded(child: new Container()),
-        new Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            new PageBubble(
-              viewModel: new PageBubbleViewModel(
-                  iconAssetPath: 'assets/shopping_cart.png',
-                  color: Colors.green,
-                  isHollow: true,
-                  activePercent: 0.0),
-            ),
-            new PageBubble(
-              viewModel: new PageBubbleViewModel(
-                  iconAssetPath: 'assets/shopping_cart.png',
-                  color: Colors.green,
-                  isHollow: false,
-                  activePercent: 1.0),
-            ),
-            new PageBubble(
-              viewModel: new PageBubbleViewModel(
-                  iconAssetPath: 'assets/shopping_cart.png',
-                  color: Colors.green,
-                  isHollow: true,
-                  activePercent: 0.0),
-            )
-          ],
-        )
+        new Row(mainAxisAlignment: MainAxisAlignment.center, children: bubbles),
       ],
     );
   }

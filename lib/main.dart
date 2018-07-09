@@ -43,7 +43,13 @@ class _MyHomePageState extends State<MyHomePage> {
               viewModel: pages[1],
               percentVisible: 1.0,
             )),
-        new PagerIndicator(),
+        new PagerIndicator(
+          viewModel: new PagerIndicatorViewModel(
+              pages: pages,
+              activeIndex: 1,
+              slideDirection: SlideDirection.leftToRight,
+              slidePercent: 1.0),
+        ),
       ],
     ));
   }
