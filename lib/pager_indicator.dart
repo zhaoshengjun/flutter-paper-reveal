@@ -14,12 +14,25 @@ class PagerIndicator extends StatelessWidget {
     for (var i = 0; i < viewModel.pages.length; ++i) {
       final page = viewModel.pages[i];
 
+      var percentActive;
+      if (i == viewModel.activeIndex) {
+        percentActive = 1 - viewModel.slidePercent;
+      } else if (i == viewModel.activeIndex - 1 &&
+          viewModel.slideDirection == SlideDirection.leftToRight) {
+        percentActive = viewModel.slidePercent;
+      } else if (i == viewModel.activeIndex + 1 &&
+          viewModel.slideDirection == SlideDirection.rightToLeft) {
+        percentActive = viewModel.slidePercent;
+      } else {
+        percentActive = 0.0;
+      }
+
       bubbles.add(new PageBubble(
           viewModel: new PageBubbleViewModel(
               iconAssetPath: page.iconAssetIcon,
               color: page.color,
               isHollow: i > viewModel.activeIndex,
-              activePercent: i == viewModel.activeIndex ? 1.0 : 0.0)));
+              activePercent: percentActive)));
     }
     return new Column(
       children: [
