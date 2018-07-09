@@ -26,7 +26,13 @@ class PagerIndicator extends StatelessWidget {
                 ),
               ),
             ),
-            new PageBubble(),
+            new PageBubble(
+              viewModel: new PageBubbleViewModel(
+                  iconAssetPath: 'assets/shopping_cart.png',
+                  color: Colors.green,
+                  isHollow: false,
+                  activePercent: 1.0),
+            ),
             new Padding(
               padding: const EdgeInsets.all(10.0),
               child: new Container(
@@ -47,6 +53,10 @@ class PagerIndicator extends StatelessWidget {
 }
 
 class PageBubble extends StatelessWidget {
+  final PageBubbleViewModel viewModel;
+
+  PageBubble({this.viewModel});
+
   @override
   Widget build(BuildContext context) {
     return new Padding(
@@ -59,8 +69,8 @@ class PageBubble extends StatelessWidget {
           color: const Color(0x88FFFFFF),
         ),
         child: new Image.asset(
-          'assets/wallet.png',
-          color: Colors.blue,
+          viewModel.iconAssetPath,
+          color: viewModel.color,
         ),
       ),
     );
@@ -79,12 +89,12 @@ class PagerIndicatorViewModel {
       {this.pages, this.activeIndex, this.slideDirection, this.slidePercent});
 }
 
-class PagerBubbleViewModel {
+class PageBubbleViewModel {
   final String iconAssetPath;
   final Color color;
   final bool isHollow;
   final double activePercent;
 
-  PagerBubbleViewModel(
+  PageBubbleViewModel(
       {this.iconAssetPath, this.color, this.isHollow, this.activePercent});
 }
