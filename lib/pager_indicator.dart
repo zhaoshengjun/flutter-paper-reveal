@@ -57,9 +57,14 @@ class PageBubble extends StatelessWidget {
         width: lerpDouble(20.0, 45.0, viewModel.activePercent),
         height: lerpDouble(20.0, 45.0, viewModel.activePercent),
         decoration: new BoxDecoration(
-          shape: BoxShape.circle,
-          color: const Color(0x88FFFFFF),
-        ),
+            shape: BoxShape.circle,
+            color: viewModel.isHollow
+                ? Colors.transparent
+                : const Color(0x88FFFFFF),
+            border: new Border.all(
+                color: viewModel.isHollow
+                    ? const Color(0x88FFFFFF)
+                    : Colors.transparent)),
         child: new Opacity(
           opacity: viewModel.activePercent,
           child: new Image.asset(
