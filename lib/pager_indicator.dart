@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'pages.dart';
 
 class PagerIndicator extends StatelessWidget {
+  final PagerIndicatorViewModel viewModel;
+
+  PagerIndicator({
+    this.viewModel
+  });
+
   @override
   Widget build(BuildContext context) {
     return new Column(
