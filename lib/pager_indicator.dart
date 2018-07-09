@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'pages.dart';
 
@@ -33,17 +35,12 @@ class PagerIndicator extends StatelessWidget {
                   isHollow: false,
                   activePercent: 1.0),
             ),
-            new Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: new Container(
-                width: 20.0,
-                height: 20.0,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: new Border.all(
-                      color: const Color(0x88FFFFFF), width: 3.0),
-                ),
-              ),
+            new PageBubble(
+              viewModel: new PageBubbleViewModel(
+                  iconAssetPath: 'assets/shopping_cart.png',
+                  color: Colors.green,
+                  isHollow: true,
+                  activePercent: 0.0),
             )
           ],
         )
@@ -62,8 +59,8 @@ class PageBubble extends StatelessWidget {
     return new Padding(
       padding: const EdgeInsets.all(10.0),
       child: new Container(
-        width: 50.0,
-        height: 50.0,
+        width: lerpDouble(20.0, 45.0, viewModel.activePercent),
+        height: lerpDouble(20.0, 45.0, viewModel.activePercent),
         decoration: new BoxDecoration(
           shape: BoxShape.circle,
           color: const Color(0x88FFFFFF),
