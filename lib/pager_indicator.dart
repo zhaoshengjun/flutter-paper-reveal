@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages.dart';
 
 class PagerIndicator extends StatelessWidget {
   @override
@@ -71,8 +72,9 @@ class PagerIndicatorViewModel {
     this.activeIndex,
     this.slideDirection,
     this.slidePercent
-  })
+  });
 }
+
 
 class PagerBubbleViewModel {
   final String iconAssetPath;
