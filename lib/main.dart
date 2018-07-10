@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'page_dragger.dart';
 import 'page_reveal.dart';
 import 'pager_indicator.dart';
 import 'pages.dart';
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               slideDirection: SlideDirection.leftToRight,
               slidePercent: 0.5),
         ),
+        new PageDragger(),
       ],
     ));
   }
