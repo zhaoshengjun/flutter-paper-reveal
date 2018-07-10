@@ -54,9 +54,15 @@ class _PageDraggerState extends State<PageDragger> {
   }
 }
 
+enum UpdateType {
+  dragging,
+  doneDragging,
+}
+
 class SlideUpdate {
+  final updateType;
   final direction;
   final slidePercent;
 
-  SlideUpdate(this.direction, this.slidePercent);
+  SlideUpdate(this.updateType, this.direction, this.slidePercent);
 }
