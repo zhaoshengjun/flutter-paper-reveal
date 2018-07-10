@@ -36,11 +36,16 @@ class PagerIndicator extends StatelessWidget {
                       viewModel.slideDirection == SlideDirection.leftToRight),
               activePercent: percentActive)));
     }
+
+    final BUBBLE_WIDTH = 55.0;
+    final double translation =
+        (viewModel.pages.length * BUBBLE_WIDTH) / 2 - (BUBBLE_WIDTH / 2);
+
     return new Column(
       children: [
         new Expanded(child: new Container()),
         new Transform(
-          transform: new Matrix4.translationValues(-50.0, 0.0, 0.0),
+          transform: new Matrix4.translationValues(translation, 0.0, 0.0),
           child: new Row(
               mainAxisAlignment: MainAxisAlignment.center, children: bubbles),
         ),
