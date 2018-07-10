@@ -40,8 +40,18 @@ class _MyHomePageState extends State<MyHomePage> {
     slideUpdateStream = new StreamController<SlideUpdate>();
     slideUpdateStream.stream.listen((SlideUpdate event) {
       setState(() {
-        slideDirection = event.direction;
-        slidePercent = event.slidePercent;
+        if (event.updateType == UpdateType.dragging) {
+          slideDirection = event.direction;
+          slidePercent = event.slidePercent;
+        } else if (event.updateType == UpdateType.doneDragging) {
+          if (slidePercent > 0.5) {
+            activeIndex = slideDirection == SlideDirection.leftToRight
+                ? activeIndex - 1
+                : activeIndex + 1;
+          }
+          slideDirection = event.direction;
+          slidePercent = event.slidePercent;
+        }
       });
     });
   }
