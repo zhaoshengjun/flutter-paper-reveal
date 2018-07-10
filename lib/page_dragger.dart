@@ -9,7 +9,7 @@ class PageDragger extends StatefulWidget {
   PageDragger({
     this.slideUpdateStream
   });
-  
+
   @override
   _PageDraggerState createState() => new _PageDraggerState();
 }
@@ -36,6 +36,7 @@ class _PageDraggerState extends State<PageDragger> {
       }
 
       slidePercent = (offsetX / FULL_TRANSITION_PX).abs().clamp(0.0, 1.0);
+      widget.slideUpdateStream.add(new SlideUpdate(slideDirection, slidePercent));
       print('Dragging $slideDirection at $slidePercent%')
     }
   }
