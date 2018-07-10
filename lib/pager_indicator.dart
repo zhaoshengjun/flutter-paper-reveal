@@ -39,7 +39,11 @@ class PagerIndicator extends StatelessWidget {
     return new Column(
       children: [
         new Expanded(child: new Container()),
-        new Row(mainAxisAlignment: MainAxisAlignment.center, children: bubbles),
+        new Transform(
+          transform: new Matrix4.translationValues(-50.0, 0.0, 0.0),
+          child: new Row(
+              mainAxisAlignment: MainAxisAlignment.center, children: bubbles),
+        ),
       ],
     );
   }
