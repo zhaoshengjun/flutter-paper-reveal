@@ -99,7 +99,7 @@ class PageBubble extends StatelessWidget {
   }
 }
 
-enum SlideDirection { leftToRight, rightToLeft }
+enum SlideDirection { leftToRight, rightToLeft, none }
 
 class PagerIndicatorViewModel {
   final List<PageViewModel> pages;
