@@ -58,11 +58,13 @@ class PageBubble extends StatelessWidget {
         decoration: new BoxDecoration(
             shape: BoxShape.circle,
             color: viewModel.isHollow
-                ? Colors.transparent
+                ? const Color(0x88FFFFFF)
+                    .withAlpha(0x88 * viewModel.activePercent.round())
                 : const Color(0x88FFFFFF),
             border: new Border.all(
                 color: viewModel.isHollow
                     ? const Color(0x88FFFFFF)
+                        .withAlpha(0x88 * (1 - viewModel.activePercent).round())
                     : Colors.transparent)),
         child: new Opacity(
           opacity: viewModel.activePercent,
