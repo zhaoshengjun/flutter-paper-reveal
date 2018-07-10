@@ -52,14 +52,14 @@ class _MyHomePageState extends State<MyHomePage> {
         body: new Stack(
       children: [
         new Page(
-          viewModel: pages[0],
+          viewModel: pages[activeIndex],
           percentVisible: 1.0,
         ),
         new PageReveal(
-            revealPercent: 1.0,
+            revealPercent: slidePercent,
             child: new Page(
               viewModel: pages[1],
-              percentVisible: 1.0,
+              percentVisible: slidePercent,
             )),
         new PagerIndicator(
           viewModel: new PagerIndicatorViewModel(
