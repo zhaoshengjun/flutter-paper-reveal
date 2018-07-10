@@ -33,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   StreamController<SlideUpdate> slideUpdateStream;
   int activeIndex = 0;
+  int nextPageIndex = 1;
   SlideDirection slideDirection = SlideDirection.none;
   double slidePercent = 0.0;
 
@@ -43,11 +44,16 @@ class _MyHomePageState extends State<MyHomePage> {
         if (event.updateType == UpdateType.dragging) {
           slideDirection = event.direction;
           slidePercent = event.slidePercent;
+          nextPageIndex = slideDirection == SlideDirection.leftToRight
+              ? activeIndex - 1
+              : activeIndex + 1;
+          nextPageIndex.clamp(0, pages.length - 1);
         } else if (event.updateType == UpdateType.doneDragging) {
           if (slidePercent > 0.5) {
             activeIndex = slideDirection == SlideDirection.leftToRight
                 ? activeIndex - 1
                 : activeIndex + 1;
+            activeIndex.clamp(0, pages.length - 1);
           }
           slideDirection = event.direction;
           slidePercent = event.slidePercent;
@@ -68,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         new PageReveal(
             revealPercent: slidePercent,
             child: new Page(
-              viewModel: pages[1],
+              viewModel: pages[nextPageIndex],
               percentVisible: slidePercent,
             )),
         new PagerIndicator(
