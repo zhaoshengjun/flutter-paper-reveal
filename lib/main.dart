@@ -32,9 +32,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   StreamController<SlideUpdate> slideUpdateStream;
+  int activeIndex = 0;
+  SlideDirection slideDirection = SlideDirection.none;
+  double slidePercent = 0.0;
 
   _MyHomePageState() {
     slideUpdateStream = new StreamController<SlideUpdate>();
+    slideUpdateStream.stream.listen((SlideUpdate event) {
+      setState(() {
+        slideDirection = event.direction;
+        slidePercent = event.slidePercent;
+      });
+    });
   }
 
   @override
@@ -55,9 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
         new PagerIndicator(
           viewModel: new PagerIndicatorViewModel(
               pages: pages,
-              activeIndex: 1,
-              slideDirection: SlideDirection.leftToRight,
-              slidePercent: 0.5),
+              activeIndex: activeIndex,
+              slideDirection: slideDirection,
+              slidePercent: slidePercent),
         ),
         new PageDragger(slideUpdateStream: this.slideUpdateStream),
       ],
