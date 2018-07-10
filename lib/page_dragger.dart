@@ -6,8 +6,18 @@ class PageDragger extends StatefulWidget {
 }
 
 class _PageDraggerState extends State<PageDragger> {
+  onDragStart(DragStartDetails details) {}
+
+  onDragUpdate(DragUpdateDetails details) {}
+
+  onDragEnd(DragEndDetails details) {}
+
   @override
   Widget build(BuildContext context) {
-    return new Container();
+    return new GestureDetector(
+      onHorizontalDragStart: onDragStart,
+      onHorizontalDragUpdate: onDragUpdate,
+      onHorizontalDragEnd: onDragEnd,
+    );
   }
 }
