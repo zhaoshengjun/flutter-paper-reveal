@@ -6,9 +6,7 @@ import 'pager_indicator.dart';
 class PageDragger extends StatefulWidget {
   final StreamController<SlideUpdate> slideUpdateStream;
 
-  PageDragger({
-    this.slideUpdateStream
-  });
+  PageDragger({this.slideUpdateStream});
 
   @override
   _PageDraggerState createState() => new _PageDraggerState();
@@ -36,8 +34,9 @@ class _PageDraggerState extends State<PageDragger> {
       }
 
       slidePercent = (offsetX / FULL_TRANSITION_PX).abs().clamp(0.0, 1.0);
-      widget.slideUpdateStream.add(new SlideUpdate(slideDirection, slidePercent));
-      print('Dragging $slideDirection at $slidePercent%')
+      widget.slideUpdateStream
+          .add(new SlideUpdate(slideDirection, slidePercent));
+      print('Dragging $slideDirection at $slidePercent%');
     }
   }
 
@@ -54,7 +53,6 @@ class _PageDraggerState extends State<PageDragger> {
     );
   }
 }
-
 
 class SlideUpdate {
   final direction;

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'page_dragger.dart';
 import 'page_reveal.dart';
@@ -29,6 +31,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  StreamController<SlideUpdate> slideUpdateStream;
+
+  _MyHomePageState() {
+    slideUpdateStream = new StreamController<SlideUpdate>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -51,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               slideDirection: SlideDirection.leftToRight,
               slidePercent: 0.5),
         ),
-        new PageDragger(),
+        new PageDragger(slideUpdateStream: this.slideUpdateStream),
       ],
     ));
   }
