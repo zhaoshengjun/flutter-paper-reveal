@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               pages: pages,
               activeIndex: 1,
               slideDirection: SlideDirection.leftToRight,
-              slidePercent: 0.0),
+              slidePercent: 0.5),
         ),
       ],
     ));
