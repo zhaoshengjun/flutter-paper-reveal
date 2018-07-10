@@ -1,7 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'pager_indicator.dart';
 
 class PageDragger extends StatefulWidget {
+  final StreamController<SlideUpdate> slideUpdateStream;
+
+  PageDragger({
+    this.slideUpdateStream
+  });
+  
   @override
   _PageDraggerState createState() => new _PageDraggerState();
 }
