@@ -34,13 +34,15 @@ class _PageDraggerState extends State<PageDragger> {
       }
 
       slidePercent = (offsetX / FULL_TRANSITION_PX).abs().clamp(0.0, 1.0);
-      widget.slideUpdateStream
-          .add(new SlideUpdate(slideDirection, slidePercent));
+      widget.slideUpdateStream.add(
+          new SlideUpdate(UpdateType.dragging, slideDirection, slidePercent));
       print('Dragging $slideDirection at $slidePercent%');
     }
   }
 
   onDragEnd(DragEndDetails details) {
+    widget.slideUpdateStream.add(
+        new SlideUpdate(UpdateType.doneDragging, SlideDirection.none, 0.0));
     dragStart = null;
   }
 
