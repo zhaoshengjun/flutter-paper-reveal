@@ -28,7 +28,7 @@ class _PageDraggerState extends State<PageDragger> {
       }
 
       slidePercent = (offsetX / FULL_TRANSITION_PX).abs().clamp(0.0, 1.0);
-      print('Dragging $slideDirection at $slidePercent%');
+      print('Dragging $slideDirection at $slidePercent%')
     }
   }
 
@@ -44,4 +44,12 @@ class _PageDraggerState extends State<PageDragger> {
       onHorizontalDragEnd: onDragEnd,
     );
   }
+}
+
+
+class SlideUpdate {
+  final direction;
+  final slidePercent;
+
+  SlideUpdate(this.direction, this.slidePercent);
 }
