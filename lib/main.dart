@@ -84,7 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
               slideDirection: slideDirection,
               slidePercent: slidePercent),
         ),
-        new PageDragger(slideUpdateStream: this.slideUpdateStream),
+        new PageDragger(
+            canDragLeftToRight: activeIndex > 0,
+            canDragRightToLeft: activeIndex < pages.length - 1,
+            slideUpdateStream: this.slideUpdateStream),
       ],
     ));
   }
