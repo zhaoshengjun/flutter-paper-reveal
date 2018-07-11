@@ -12,20 +12,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Material Page Reveal',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      home: new MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
@@ -35,15 +31,17 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   AnimatedPageDragger animatedPageDragger;
 
   int activeIndex = 0;
-  int nextPageIndex = 1;
+  int nextPageIndex = 0;
   SlideDirection slideDirection = SlideDirection.none;
   double slidePercent = 0.0;
 
   _MyHomePageState() {
     slideUpdateStream = new StreamController<SlideUpdate>();
+
     slideUpdateStream.stream.listen((SlideUpdate event) {
       setState(() {
         if (event.updateType == UpdateType.dragging) {
+          print('Sliding ${event.direction} at ${event.slidePercent}');
           slideDirection = event.direction;
           slidePercent = event.slidePercent;
 
@@ -55,31 +53,39 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             nextPageIndex = activeIndex;
           }
         } else if (event.updateType == UpdateType.doneDragging) {
+          print('Done dragging.');
           if (slidePercent > 0.5) {
             animatedPageDragger = new AnimatedPageDragger(
-                slideDirection: slideDirection,
-                transitionGoal: TransitionGoal.open,
-                slidePercent: slidePercent,
-                slideUpdateStream: slideUpdateStream,
-                vsync: this);
+              slideDirection: slideDirection,
+              transitionGoal: TransitionGoal.open,
+              slidePercent: slidePercent,
+              slideUpdateStream: slideUpdateStream,
+              vsync: this,
+            );
           } else {
             animatedPageDragger = new AnimatedPageDragger(
-                slideDirection: slideDirection,
-                transitionGoal: TransitionGoal.close,
-                slidePercent: slidePercent,
-                slideUpdateStream: slideUpdateStream,
-                vsync: this);
+              slideDirection: slideDirection,
+              transitionGoal: TransitionGoal.close,
+              slidePercent: slidePercent,
+              slideUpdateStream: slideUpdateStream,
+              vsync: this,
+            );
+
+            nextPageIndex = activeIndex;
           }
+
           animatedPageDragger.run();
-        } else if (event.updateType == UpdateType.animating) {} else if (event
-                .updateType ==
-            UpdateType.doneAnimating) {
-          activeIndex = slideDirection == SlideDirection.leftToRight
-              ? activeIndex - 1
-              : activeIndex + 1;
-          activeIndex.clamp(0, pages.length - 1);
+        } else if (event.updateType == UpdateType.animating) {
+          print('Sliding ${event.direction} at ${event.slidePercent}');
           slideDirection = event.direction;
           slidePercent = event.slidePercent;
+        } else if (event.updateType == UpdateType.doneAnimating) {
+          print('Done animating. Next page index: $nextPageIndex');
+          activeIndex = nextPageIndex;
+
+          slideDirection = SlideDirection.none;
+          slidePercent = 0.0;
+
           animatedPageDragger.dispose();
         }
       });
@@ -89,30 +95,34 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: new Stack(
-      children: [
-        new Page(
-          viewModel: pages[activeIndex],
-          percentVisible: 1.0,
-        ),
-        new PageReveal(
+      body: new Stack(
+        children: [
+          new Page(
+            viewModel: pages[activeIndex],
+            percentVisible: 1.0,
+          ),
+          new PageReveal(
             revealPercent: slidePercent,
             child: new Page(
               viewModel: pages[nextPageIndex],
               percentVisible: slidePercent,
-            )),
-        new PagerIndicator(
-          viewModel: new PagerIndicatorViewModel(
+            ),
+          ),
+          new PagerIndicator(
+            viewModel: new PagerIndicatorViewModel(
               pages: pages,
               activeIndex: activeIndex,
               slideDirection: slideDirection,
-              slidePercent: slidePercent),
-        ),
-        new PageDragger(
+              slidePercent: slidePercent,
+            ),
+          ),
+          new PageDragger(
             canDragLeftToRight: activeIndex > 0,
             canDragRightToLeft: activeIndex < pages.length - 1,
-            slideUpdateStream: this.slideUpdateStream),
-      ],
-    ));
+            slideUpdateStream: this.slideUpdateStream,
+          ),
+        ],
+      ),
+    );
   }
 }
