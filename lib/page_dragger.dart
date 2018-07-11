@@ -39,7 +39,11 @@ class _PageDraggerState extends State<PageDragger> {
         slideDirection = SlideDirection.none;
       }
 
-      slidePercent = (offsetX / FULL_TRANSITION_PX).abs().clamp(0.0, 1.0);
+      if (slideDirection != SlideDirection.none) {
+        slidePercent = (offsetX / FULL_TRANSITION_PX).abs().clamp(0.0, 1.0);
+      } else {
+        slidePercent = 0.0;
+      }
       widget.slideUpdateStream.add(
           new SlideUpdate(UpdateType.dragging, slideDirection, slidePercent));
       print('Dragging $slideDirection at $slidePercent%');
