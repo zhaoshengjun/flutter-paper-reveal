@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import 'pager_indicator.dart';
 
 class PageDragger extends StatefulWidget {
+  final bool canDragLeftToRight;
+  final bool canDragRightToLeft;
+
   final StreamController<SlideUpdate> slideUpdateStream;
 
-  PageDragger({this.slideUpdateStream});
+  PageDragger(
+      {this.canDragLeftToRight,
+      this.canDragRightToLeft,
+      this.slideUpdateStream});
 
   @override
   _PageDraggerState createState() => new _PageDraggerState();
@@ -25,9 +31,9 @@ class _PageDraggerState extends State<PageDragger> {
     if (dragStart != null) {
       final newPosition = details.globalPosition;
       final offsetX = dragStart.dx - newPosition.dx;
-      if (offsetX > 0.0) {
+      if (offsetX > 0.0 && widget.canDragRightToLeft) {
         slideDirection = SlideDirection.rightToLeft;
-      } else if (offsetX < 0.0) {
+      } else if (offsetX < 0.0 && widget.canDragLeftToRight) {
         slideDirection = SlideDirection.leftToRight;
       } else {
         slideDirection = SlideDirection.none;
