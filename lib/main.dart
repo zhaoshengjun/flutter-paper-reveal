@@ -44,10 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
         if (event.updateType == UpdateType.dragging) {
           slideDirection = event.direction;
           slidePercent = event.slidePercent;
-          nextPageIndex = slideDirection == SlideDirection.leftToRight
-              ? activeIndex - 1
-              : activeIndex + 1;
-          nextPageIndex.clamp(0, pages.length - 1);
+
+          if (slideDirection == SlideDirection.leftToRight) {
+            nextPageIndex = activeIndex - 1;
+          } else if (slideDirection == SlideDirection.rightToLeft) {
+            nextPageIndex = activeIndex + 1;
+          } else {
+            nextPageIndex = activeIndex;
+          }
         } else if (event.updateType == UpdateType.doneDragging) {
           if (slidePercent > 0.5) {
             activeIndex = slideDirection == SlideDirection.leftToRight
